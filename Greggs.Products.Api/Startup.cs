@@ -1,7 +1,10 @@
+using Greggs.Products.Api.DataAccess;
+using Greggs.Products.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Greggs.Products.Api;
 
@@ -12,6 +15,10 @@ public class Startup
         services.AddControllers();
 
         services.AddSwaggerGen();
+        services.AddTransient<IDataAccess<Object>, ProductAccess>();
+        services.AddTransient<IPriceConverter, EuroPriceConverter>();
+        services.AddTransient<IPriceConverter, PoundPriceConverter>();
+
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

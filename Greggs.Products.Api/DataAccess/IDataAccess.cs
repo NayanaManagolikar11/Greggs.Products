@@ -4,5 +4,5 @@ namespace Greggs.Products.Api.DataAccess;
 
 public interface IDataAccess<out T>
 {
-    IEnumerable<T> List(int? pageStart, int? pageSize);
+    IEnumerable<T> List(string currencyType, int? pageStart, int? pageSize);
 }
